@@ -826,6 +826,16 @@ hr {
   .tile .cube-face {
     font-size: 35px;
   }
+  .tile-new {
+    -webkit-animation: none;
+    -moz-animation: none;
+    animation: none;
+  }
+  .tile-merged {
+    -webkit-animation: none;
+    -moz-animation: none;
+    animation: none;
+  }
   .touch-buttons {
     margin-top:80px;
     display: -webkit-box;
