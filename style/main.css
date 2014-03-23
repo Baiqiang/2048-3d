@@ -845,8 +845,11 @@ hr {
     opacity: 1;
     visibility: hidden;
   }
+  .tile {
+    line-height: 42px;
+  }
   .tile .cube-face {
-    font-size: 35px;
+    font-size: 20px;
     box-shadow: none !important;
   }
   .cube {
@@ -1088,10 +1091,6 @@ hr {
     -o-transform: translateX(80px) translateY(80px) translateZ(80px);
     transform: translateX(80px) translateY(80px) translateZ(80px);
   }
-  .tile {
-    line-height: 40px;
-  }
-
   .touch-buttons {
     display: -webkit-box;
     display: -moz-box;
