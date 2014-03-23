@@ -23,7 +23,7 @@ GameManager.prototype.rotate = function () {
 
 // Hide some layers
 GameManager.prototype.hidden = function (layer) {
-  this.actuator.hidden(layer);
+  this.actuator.hidden(layer, this.size);
 };
 
 // Restart the game

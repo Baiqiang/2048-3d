@@ -819,10 +819,15 @@ hr {
     -o-transform-origin: 0 0;
     transform-origin: 0 0;
   }
+  .cube.hidden {
+    opacity: 1;
+    visibility: hidden;
+  }
   .tile .cube-face {
     font-size: 35px;
     box-shadow: none !important;
   }
+
   .touch-buttons {
     margin-top: 10px;
     display: -webkit-box;

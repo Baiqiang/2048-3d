@@ -16,18 +16,29 @@ HTMLActuator.prototype.rotate = function (rotated) {
   }
 };
 
-HTMLActuator.prototype.hidden = function (layer) {
-  var dom, slice = [].slice; 
+HTMLActuator.prototype.hidden = function (layer, size) {
   if (layer === false || layer === undefined) {
-    dom = document.querySelectorAll('.cube.hidden');
-    slice.call(dom).forEach(function(d) {
+    var dom = document.querySelectorAll('.cube.hidden');
+    [].slice.call(dom).forEach(function(d) {
       d.classList.remove('hidden');
     });
   } else {
-    dom = document.querySelectorAll('.cube:not([class$="-' + layer + '"])');
-    slice.call(dom).forEach(function(d) {
-      d.classList.add('hidden');
-    });
+    for (var x = 0; x < size; x++) {
+      for (var y = 0; y < size; y++) {
+        for (var z = 0; z < size; z++) {
+          if (z + 1 == layer) {
+            continue;
+          }
+          [].slice.call(document.querySelectorAll('.' + this.positionClass({
+            x: x,
+            y: y,
+            z: z
+          }))).forEach(function(d) {
+            d.classList.add('hidden');
+          });
+        }
+      }
+    }
   }
 };
 
