@@ -2,4 +2,5 @@
 window.requestAnimationFrame(function () {
   window.gameName = '2048-3d';
   new GameManager(3, KeyboardInputManager, HTMLActuator, LocalScoreManager);
+  'ontouchstart' in window && (document.querySelector('.touch-buttons').classList.add('show'));
 });

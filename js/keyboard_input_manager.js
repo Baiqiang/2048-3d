@@ -46,9 +46,16 @@ KeyboardInputManager.prototype.listen = function () {
     51: 3
   };
 
+  var restartMap = [
+    8, //backspace
+    27, //esc
+    48 //0
+  ];
+
   var slice = [].slice;
 
   document.addEventListener("keydown", function (event) {
+    console.log(event.which)
     var modifiers = event.altKey || event.ctrlKey || event.metaKey ||
                     event.shiftKey;
     var mapped    = map[event.which];
@@ -66,7 +73,10 @@ KeyboardInputManager.prototype.listen = function () {
         self.emit("rotate");
       }
 
-      if (event.which === 32) self.restart.bind(self)(event);
+      if (restartMap.indexOf(event.which) > 0) {
+        event.preventDefault();
+        self.restart.bind(self)(event);
+      }
     }
   });
   document.addEventListener('keyup', function (event) {
@@ -116,7 +126,6 @@ KeyboardInputManager.prototype.listen = function () {
   });
   //touch buttons
   slice.call(document.querySelectorAll('.touch-hidden')).forEach(function(button) {
-    console.log(button)
     var layer = button.textContent;
     button.addEventListener('touchstart', function (event) {
       event.preventDefault();
