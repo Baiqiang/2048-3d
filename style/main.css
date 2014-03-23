@@ -827,7 +827,7 @@ hr {
     font-size: 35px;
   }
   .touch-buttons {
-    margin-top: 350px;
+    margin-top:80px;
     display: -webkit-box;
     display: -moz-box;
     display: -o-box;
@@ -857,7 +857,7 @@ hr {
     box-flex: 2;
   }
   .game-explanation {
-    margin-top: 130px;
+    margin-top: 30px;
   }
   .game-message p {
     font-size: 30px !important;
