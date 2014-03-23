@@ -767,7 +767,7 @@ hr {
     margin-top: 15px;
   }
   .container {
-    width: 280px;
+    width: 300px;
   }
   .score-container, .best-container {
     margin-top: 0;
@@ -778,15 +778,14 @@ hr {
     margin-bottom: 10px;
   }
   .game-container {
-    margin-top: 40px;
-    padding: 10px;
-    cursor: default;
+    margin-top: 0;
+    padding: 40px 0 0 0;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     border-radius: 6px;
-    width: 280px;
-    height: 280px;
+    width: 300px;
+    height: 380px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -808,9 +807,6 @@ hr {
     line-height: 42px;
     margin-left: 9px;
   }
-  .game-container {
-    margin-top: 20px;
-  }
   .grid-container {
     -webkit-transform: scale3d(0.5, 0.5, 0.5);
     -moz-transform: scale3d(0.5, 0.5, 0.5);
@@ -825,19 +821,10 @@ hr {
   }
   .tile .cube-face {
     font-size: 35px;
-  }
-  .tile-new {
-    -webkit-animation: none;
-    -moz-animation: none;
-    animation: none;
-  }
-  .tile-merged {
-    -webkit-animation: none;
-    -moz-animation: none;
-    animation: none;
+    box-shadow: none !important;
   }
   .touch-buttons {
-    margin-top:80px;
+    margin-top: 10px;
     display: -webkit-box;
     display: -moz-box;
     display: -o-box;

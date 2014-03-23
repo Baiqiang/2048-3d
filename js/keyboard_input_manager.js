@@ -119,9 +119,11 @@ KeyboardInputManager.prototype.listen = function () {
     console.log(button)
     var layer = button.textContent;
     button.addEventListener('touchstart', function (event) {
-      event.stopPropagation();
       event.preventDefault();
       self.emit("hidden", layer);
+    });
+    button.addEventListener('touchstart', function (event) {
+      event.preventDefault();
     });
     button.addEventListener('touchend', function (event) {
       self.emit("hidden", false);
@@ -135,12 +137,10 @@ KeyboardInputManager.prototype.listen = function () {
     touchStartClientX2 = event.touches[0].clientX;
     touchStartClientY2 = event.touches[0].clientY;
     event.preventDefault();
-    event.stopPropagation();
   });
 
   rotateButton.addEventListener("touchmove", function (event) {
     event.preventDefault();
-    event.stopPropagation();
   });
 
   rotateButton.addEventListener("touchend", function (event) {
