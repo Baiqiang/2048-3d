@@ -568,7 +568,7 @@ hr {
 }
 @media screen and (max-width: 520px) {
   .tile.tile-128 .cube-face {
-    font-size: 25px;
+    font-size: 15px;
   }
 }
 .tile.tile-256 .cube-face {
@@ -578,7 +578,7 @@ hr {
 }
 @media screen and (max-width: 520px) {
   .tile.tile-256 .cube-face {
-    font-size: 25px;
+    font-size: 15px;
   }
 }
 .tile.tile-512 .cube-face {
@@ -588,7 +588,7 @@ hr {
 }
 @media screen and (max-width: 520px) {
   .tile.tile-512 .cube-face {
-    font-size: 25px;
+    font-size: 15px;
   }
 }
 .tile.tile-1024 .cube-face {
@@ -598,7 +598,7 @@ hr {
 }
 @media screen and (max-width: 520px) {
   .tile.tile-1024 .cube-face {
-    font-size: 15px;
+    font-size: 13px;
   }
 }
 .tile.tile-2048 .cube-face {
@@ -608,7 +608,7 @@ hr {
 }
 @media screen and (max-width: 520px) {
   .tile.tile-2048 .cube-face {
-    font-size: 15px;
+    font-size: 13px;
   }
 }
 .tile.tile-super .cube-face {
