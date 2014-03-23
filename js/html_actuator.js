@@ -95,6 +95,17 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   // We can't use classlist because it somehow glitches when replacing classes
   var classes = ["tile", "tile-" + tile.value, 'cube', positionClass];
+  var value = tile.value;
+  if (value > 8192) {
+    (function() {
+      var i = 1, n = value;
+      while (n > 2) {
+        i++;
+        n /= 2;
+      }
+      value = '2^' + i;
+    })();
+  }
 
   if (tile.value > 2048) classes.push("tile-super");
 
@@ -103,7 +114,7 @@ HTMLActuator.prototype.addTile = function (tile) {
   ['u', 'd', 'l', 'r', 'f', 'b'].forEach(function(f) {
     var face = document.createElement("div");
     self.applyClasses(face, ['cube-face', 'cube-face-' + f]);
-    face.textContent = tile.value;
+    face.textContent = value;
     inner.appendChild(face);
   });
 

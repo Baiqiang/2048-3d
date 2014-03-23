@@ -594,7 +594,7 @@ hr {
 .tile.tile-1024 .cube-face {
   color: #f9f6f2;
   background: #edc53f;
-  font-size: 35px;
+  font-size: 28px;
 }
 @media screen and (max-width: 520px) {
   .tile.tile-1024 .cube-face {
@@ -604,7 +604,7 @@ hr {
 .tile.tile-2048 .cube-face {
   color: #f9f6f2;
   background: #edc22e;
-  font-size: 35px;
+  font-size: 28px;
 }
 @media screen and (max-width: 520px) {
   .tile.tile-2048 .cube-face {
@@ -614,7 +614,7 @@ hr {
 .tile.tile-super .cube-face {
   color: #f9f6f2;
   background: #3c3a32;
-  font-size: 30px;
+  font-size: 20px;
 }
 @media screen and (max-width: 520px) {
   .tile.tile-super .cube-face {
