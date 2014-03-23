@@ -742,12 +742,15 @@ hr {
 }
 .touch-buttons {
   display: none;
-  margin-top: 10px;
-  height: 40px;
+  height: 90px;
   line-height: 40px;
   text-align: center;
 }
 .touch-buttons.show {
+  display: block;
+}
+.button-group {
+  margin-top: 10px;
   display: -webkit-box;
   display: -moz-box;
   display: -o-box;
@@ -761,17 +764,11 @@ hr {
   -ms-box-flex: 1;
   box-flex: 1;
   height: 100%;
+  width: 1%;
   background: #8f7a66;
   border-radius: 3px;
   margin: 0 10px;
   color: #f9f6f2;
-}
-.touch-hidden {
-  -webkit-box-flex: 2;
-  -moz-box-flex: 2;
-  -o-box-flex: 2;
-  -ms-box-flex: 2;
-  box-flex: 2;
 }
 .game-intro {
   margin-bottom: 0;
@@ -1092,11 +1089,7 @@ hr {
     transform: translateX(80px) translateY(80px) translateZ(80px);
   }
   .touch-buttons {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -o-box;
-    display: -ms-box;
-    display: box;
+    display: block;
   }
   .game-message p {
     font-size: 30px !important;

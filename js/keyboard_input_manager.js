@@ -125,7 +125,7 @@ KeyboardInputManager.prototype.listen = function () {
     }
   });
   //touch buttons
-  slice.call(document.querySelectorAll('.touch-hidden')).forEach(function(button) {
+  slice.call(document.querySelectorAll('.touch-button.long-tap')).forEach(function(button) {
     var layer = button.textContent;
     button.addEventListener('touchstart', function (event) {
       event.preventDefault();
@@ -138,33 +138,35 @@ KeyboardInputManager.prototype.listen = function () {
       self.emit("hidden", false);
     });
   });
-  var rotateButton = document.querySelector('.touch-rotate');
-  var touchStartClientX2, touchStartClientY2;
-  rotateButton.addEventListener("touchstart", function (event) {
-    if (event.touches.length > 1) return;
+  slice.call(document.querySelectorAll('.touch-button.tap')).forEach(function(button) {
+    var touchStartClientX, touchStartClientY;
+    button.addEventListener("touchstart", function (event) {
+      if (event.touches.length > 1) return;
 
-    touchStartClientX2 = event.touches[0].clientX;
-    touchStartClientY2 = event.touches[0].clientY;
-    event.preventDefault();
-  });
+      touchStartClientX = event.touches[0].clientX;
+      touchStartClientY = event.touches[0].clientY;
+      event.preventDefault();
+    });
 
-  rotateButton.addEventListener("touchmove", function (event) {
-    event.preventDefault();
-  });
+    button.addEventListener("touchmove", function (event) {
+      event.preventDefault();
+    });
 
-  rotateButton.addEventListener("touchend", function (event) {
-    if (event.touches.length > 0) return;
+    button.addEventListener("touchend", function (event) {
+      if (event.touches.length > 0) return;
 
-    var dx = event.changedTouches[0].clientX - touchStartClientX2;
-    var absDx = Math.abs(dx);
+      var dx = event.changedTouches[0].clientX - touchStartClientX;
+      var absDx = Math.abs(dx);
 
-    var dy = event.changedTouches[0].clientY - touchStartClientY2;
-    var absDy = Math.abs(dy);
+      var dy = event.changedTouches[0].clientY - touchStartClientY;
+      var absDy = Math.abs(dy);
 
-    if (Math.max(absDx, absDy) < 20) {
-      // (right : left) : (down : up)
-      self.emit("rotate");
-    }
+      if (Math.max(absDx, absDy) < 20) {
+        var type = button.dataset.type || 'rotate';
+        var value = button.dataset.value || 0;
+        self.emit(type, value);
+      }
+    });
   });
 };
 
