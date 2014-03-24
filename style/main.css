@@ -523,7 +523,7 @@ hr {
   transform: translateX(200px) translateY(200px) translateZ(200px);
 }
 .tile {
-  line-height: 80px;
+  line-height: 90px;
   position: absolute;
   -webkit-transition: 100ms ease-in-out;
   -moz-transition: 100ms ease-in-out;
