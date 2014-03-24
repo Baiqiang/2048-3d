@@ -269,7 +269,6 @@ hr {
   transform: rotateX(-18deg) rotateY(105deg);
 }
 .tile-container {
-  position: absolute;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;
@@ -303,6 +302,10 @@ hr {
   -ms-transform-origin: 50% 50%;
   -o-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .cube-face-u {
   -webkit-transform: rotateX(90deg) translateZ(40px);
@@ -538,12 +541,9 @@ hr {
 .tile {
   line-height: 90px;
   position: absolute;
-  -webkit-transition: 100ms ease-in-out;
-  -moz-transition: 100ms ease-in-out;
-  transition: 100ms ease-in-out;
-  -webkit-transition-property: -webkit-transform;
-  -moz-transition-property: -moz-transform;
-  transition-property: transform;
+  -webkit-transition: -webkit-transform 100ms ease-in-out;
+  -moz-transition: -moz-transform 100ms ease-in-out;
+  transition: transform 100ms ease-in-out;
 }
 .tile .cube-face {
   background: #eee4da;
@@ -808,6 +808,12 @@ hr {
     margin-top: 0;
     padding: 15px 10px;
     min-width: 40px;
+  }
+  .score-container .score-addition, .best-container .score-addition {
+    display: none;
+    -webkit-animation: none;
+    -moz-animation: none;
+    animation: none;
   }
   .heading {
     margin-bottom: 10px;
