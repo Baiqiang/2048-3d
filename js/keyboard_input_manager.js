@@ -55,7 +55,6 @@ KeyboardInputManager.prototype.listen = function () {
   var slice = [].slice;
 
   document.addEventListener("keydown", function (event) {
-    console.log(event.which)
     var modifiers = event.altKey || event.ctrlKey || event.metaKey ||
                     event.shiftKey;
     var mapped    = map[event.which];
