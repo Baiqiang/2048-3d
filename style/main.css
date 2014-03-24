@@ -59,7 +59,7 @@ h1.title {
 .score-container, .best-container {
   position: relative;
   display: inline-block;
-  background: #bbada0;
+  background: #8f7a66;
   padding: 15px 25px;
   font-size: 25px;
   height: 25px;
@@ -159,7 +159,6 @@ hr {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  border-radius: 6px;
   width: 480px;
   height: 620px;
   -webkit-box-sizing: border-box;
@@ -209,7 +208,6 @@ hr {
   display: none;
 }
 .game-container .game-message #alipay {
-  display: none;
   margin-top: 10px;
 }
 .game-container .game-message #alipay a {
@@ -300,7 +298,6 @@ hr {
   height: 79px;
   border: 1px solid rgba(0, 0, 0, 0.55);
   background: rgba(238, 228, 218, 0.15);
-  border-radius: 3px;
   -webkit-transform-origin: 50% 50%;
   -moz-transform-origin: 50% 50%;
   -ms-transform-origin: 50% 50%;
@@ -821,7 +818,6 @@ hr {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
-    border-radius: 6px;
     width: 270px;
     height: 320px;
     -webkit-box-sizing: border-box;
