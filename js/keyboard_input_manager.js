@@ -73,7 +73,7 @@ KeyboardInputManager.prototype.listen = function () {
         self.emit("rotate");
       }
 
-      if (restartMap.indexOf(event.which) > 0) {
+      if (restartMap.indexOf(event.which) > -1) {
         event.preventDefault();
         self.restart.bind(self)(event);
       }
