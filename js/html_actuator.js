@@ -6,6 +6,10 @@ function HTMLActuator() {
   this.messageContainer = document.querySelector(".game-message");
 
   this.score = 0;
+  var clearUselessTile = this.clearUselessTile.bind(this);
+  ['webkitTransitionEnd', 'oTransitionEnd', 'transitionend'].forEach(function(eventName) {
+    document.addEventListener(eventName, clearUselessTile);
+  })
 }
 
 HTMLActuator.prototype.rotate = function (rotated) {
@@ -41,6 +45,14 @@ HTMLActuator.prototype.hidden = function (layer, size) {
     }
   }
 };
+
+HTMLActuator.prototype.clearUselessTile = function() {
+  console.log(111)
+  var self = this;
+  [].slice.call(document.querySelectorAll('.tile-useless')).forEach(function(d) {
+    self.tileContainer.removeChild(d.parentNode);
+  });
+}
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
   var self = this;
@@ -124,6 +136,9 @@ HTMLActuator.prototype.addTile = function (tile) {
       classes[3] = self.positionClass({ x: tile.x, y: tile.y, z: tile.z });
       self.applyClasses(wrapper, classes); // Update the position
     });
+    if (tile.merged) {
+      inner.classList.add("tile-useless");
+    }
   } else if (tile.mergedFrom) {
     inner.classList.add("tile-merged");
 

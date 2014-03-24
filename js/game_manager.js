@@ -141,6 +141,7 @@ GameManager.prototype.move = function (direction) {
           if (next && next.value === tile.value && !next.mergedFrom) {
             var merged = new Tile(positions.next, tile.value * 2);
             merged.mergedFrom = [tile, next];
+            tile.merged = next.merged = true;
 
             self.grid.insertTile(merged);
             self.grid.removeTile(tile);
