@@ -111,7 +111,7 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   this.applyClasses(wrapper, classes);
 
-  ['u', 'd', 'l', 'r', 'f', 'b'].forEach(function(f) {
+  ['b', 'u', 'd', 'r', 'f', 'l'].forEach(function(f) {
     var face = document.createElement("div");
     self.applyClasses(face, ['cube-face', 'cube-face-' + f]);
     face.textContent = value;

@@ -261,6 +261,14 @@ hr {
   -o-transform: rotateX(-18deg) rotateY(105deg);
   transform: rotateX(-18deg) rotateY(105deg);
 }
+.tile-container {
+  position: absolute;
+  zoom: 1;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
 .cube {
   position: absolute;
   width: 80px;
