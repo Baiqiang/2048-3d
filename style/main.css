@@ -782,7 +782,7 @@ hr {
   -ms-box-flex: 1;
   box-flex: 1;
   height: 100%;
-  width: 1%;
+  width: 100px;
   background: #8f7a66;
   border-radius: 3px;
   margin: 0 10px;
