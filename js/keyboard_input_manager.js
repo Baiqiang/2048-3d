@@ -94,6 +94,9 @@ KeyboardInputManager.prototype.listen = function () {
   var keepPlaying = document.querySelector(".keep-playing-button");
   keepPlaying.addEventListener("click", this.keepPlaying.bind(this));
   keepPlaying.addEventListener("touchend", this.keepPlaying.bind(this));
+  document.querySelector('#alipay a').addEventListener('touchstart', function(event) {
+    event.stopPropagation();
+  });
 
   // Listen to swipe events
   var touchStartClientX, touchStartClientY;

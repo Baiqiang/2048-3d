@@ -20,7 +20,6 @@ h1.title {
   font-weight: bold;
   margin: 0;
   display: block;
-  float: left;
 }
 @-webkit-keyframes move-up {
   0% {
@@ -555,19 +554,39 @@ hr {
   z-index: 10;
   font-size: 55px;
 }
+.tile.tile-bonus .cube-face {
+  background: #776e65;
+  color: #eee4da;
+}
 .tile.tile-2 .cube-face {
   background: #eee4da;
 }
+.tile.tile-bonus.tile-2 .cube-face {
+  background: #776e65;
+  color: #eee4da;
+}
 .tile.tile-4 .cube-face {
   background: #ede0c8;
+}
+.tile.tile-bonus.tile-4 .cube-face {
+  background: #776e65;
+  color: #ede0c8;
 }
 .tile.tile-8 .cube-face {
   color: #f9f6f2;
   background: #f2b179;
 }
+.tile.tile-bonus.tile-8 .cube-face {
+  background: #f9f6f2;
+  color: #f2b179;
+}
 .tile.tile-16 .cube-face {
   color: #f9f6f2;
   background: #f59563;
+}
+.tile.tile-bonus.tile-16 .cube-face {
+  background: #f9f6f2;
+  color: #f59563;
 }
 .tile.tile-32 .cube-face {
   color: #f9f6f2;
@@ -813,12 +832,15 @@ hr {
   -moz-animation: pop 400ms ease 100ms;
   animation: pop 400ms ease 100ms;
 }
-.tile-bonused ..tile-useless {
+.tile-bonus .tile-useless {
+  -webkit-transform: scale3d(0, 0, 0);
+  -moz-transform: scale3d(0, 0, 0);
+  transform: scale3d(0, 0, 0);
   -webkit-animation: bonused 400ms ease 100ms;
   -moz-animation: bonused 400ms ease 100ms;
   animation: bonused 400ms ease 100ms;
 }
-.tile-merged, .tile-new {
+.tile-merged, .tile-new, .tile-bonus .tile-useless {
   height: 100%;
   width: 100%;
   -webkit-animation-fill-mode: backwards;
@@ -881,7 +903,7 @@ hr {
   h1.title {
     font-size: 27px;
     margin-top: 15px;
-	float: none;
+    float: none;
   }
   .container {
     width: 270px;

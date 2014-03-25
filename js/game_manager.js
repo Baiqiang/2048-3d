@@ -82,26 +82,17 @@ GameManager.prototype.addRandomTile = function () {
 };
 
 // Add bonus tile
-GameManager.prototype.addBonus = function (value) {
-  var maxBonus = (function(max) {
-    var i = 1;
-    max = max / 2048;
-    while (max > 2) {
-      max /= 2;
-      i++;
-    }
-    return 11 - i;
-  })(this.max);
-  if (value < 32) {
+GameManager.prototype.addBonus = function () {
+  if (Math.random() > 0.2 * this.grid.availableCells().length / this.grid.cells.length) {
     return;
   }
+  var maxBonus = 4;
+  var values = [4, 64, 256];
+  var value = values[Math.floor(Math.random() * values.length)];
   if (this.bonus[value] === undefined) {
     this.bonus[value] = 0;
   }
   if (this.bonus[value] == 2) {
-    return;
-  }
-  if (this.bonus.length > maxBonus / 2) {
     return;
   }
   for (var num in this.bonus) {
@@ -196,10 +187,6 @@ GameManager.prototype.move = function (direction) {
 
             self.grid.insertTile(merged);
             self.grid.removeTile(tile);
-            //drop bonus if number merged
-            if (tile.type === 'number') {
-              self.addBonus(merged.value);
-            }
             if (tile.type === 'bonus') {
               self.removeBonus(tile.value);
             }
@@ -228,6 +215,7 @@ GameManager.prototype.move = function (direction) {
 
   if (moved) {
     this.addRandomTile();
+    this.addBonus();
 
     if (!this.movesAvailable()) {
       this.over = true; // Game over!

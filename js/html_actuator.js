@@ -47,11 +47,10 @@ HTMLActuator.prototype.hidden = function (layer, size) {
 };
 
 HTMLActuator.prototype.clearUselessTile = function() {
-  console.log(111)
   var self = this;
-  [].slice.call(document.querySelectorAll('.tile-useless')).forEach(function(d) {
-    self.tileContainer.removeChild(d.parentNode);
-  });
+  // [].slice.call(document.querySelectorAll('.tile-useless')).forEach(function(d) {
+  //   self.tileContainer.removeChild(d.parentNode);
+  // });
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
