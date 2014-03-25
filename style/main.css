@@ -545,6 +545,9 @@ hr {
   -moz-transition: -moz-transform 100ms ease-in-out;
   transition: transform 100ms ease-in-out;
 }
+.tile.tile-bonused {
+  display: none;
+}
 .tile .cube-face {
   background: #eee4da;
   text-align: center;
@@ -570,15 +573,27 @@ hr {
   color: #f9f6f2;
   background: #f67c5f;
 }
+.tile.tile-bonus.tile-32 .cube-face {
+  background: #f9f6f2;
+  color: #f67c5f;
+}
 .tile.tile-64 .cube-face {
   color: #f9f6f2;
   background: #f65e3b;
+}
+.tile.tile-bonus.tile-64 .cube-face {
+  background: #f9f6f2;
+  color: #f65e3b;
 }
 .tile.tile-128 .cube-face {
   color: #f9f6f2;
   background: #edcf72;
   font-size: 45px;
   box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.2381), inset 0 0 0 1px rgba(255, 255, 255, 0.14286);
+}
+.tile.tile-bonus.tile-128 .cube-face {
+  background: #f9f6f2;
+  color: #edcf72;
 }
 @media screen and (max-width: 520px) {
   .tile.tile-128 .cube-face {
@@ -591,6 +606,10 @@ hr {
   font-size: 45px;
   box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.31746), inset 0 0 0 1px rgba(255, 255, 255, 0.19048);
 }
+.tile.tile-bonus.tile-256 .cube-face {
+  background: #f9f6f2;
+  color: #edcc61;
+}
 @media screen and (max-width: 520px) {
   .tile.tile-256 .cube-face {
     font-size: 15px;
@@ -601,6 +620,10 @@ hr {
   background: #edc850;
   font-size: 45px;
   box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
+}
+.tile.tile-bonus.tile-512 .cube-face {
+  background: #f9f6f2;
+  color: #edc850;
 }
 @media screen and (max-width: 520px) {
   .tile.tile-512 .cube-face {
@@ -613,6 +636,10 @@ hr {
   font-size: 28px;
   box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.47619), inset 0 0 0 1px rgba(255, 255, 255, 0.28571);
 }
+.tile.tile-bonus.tile-1024 .cube-face {
+  background: #f9f6f2;
+  color: #edc53f;
+}
 @media screen and (max-width: 520px) {
   .tile.tile-1024 .cube-face {
     font-size: 13px;
@@ -624,6 +651,10 @@ hr {
   font-size: 28px;
   box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
 }
+.tile.tile-bonus.tile-2048 .cube-face {
+  background: #f9f6f2;
+  color: #edc22e;
+}
 @media screen and (max-width: 520px) {
   .tile.tile-2048 .cube-face {
     font-size: 13px;
@@ -633,6 +664,10 @@ hr {
   color: #f9f6f2;
   background: #3c3a32;
   font-size: 20px;
+}
+.tile.tile-bonus.tile-super .cube-face {
+  background: #f9f6f2;
+  color: #3c3a32;
 }
 @media screen and (max-width: 520px) {
   .tile.tile-super .cube-face {
@@ -732,6 +767,42 @@ hr {
     transform: scale3d(1, 1, 1);
   }
 }
+@-webkit-keyframes bonused {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    -moz-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(0, 0, 0);
+    -moz-transform: scale3d(0, 0, 0);
+    transform: scale3d(0, 0, 0);
+  }
+}
+@-moz-keyframes bonused {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    -moz-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(0, 0, 0);
+    -moz-transform: scale3d(0, 0, 0);
+    transform: scale3d(0, 0, 0);
+  }
+}
+@keyframes bonused {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    -moz-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(0, 0, 0);
+    -moz-transform: scale3d(0, 0, 0);
+    transform: scale3d(0, 0, 0);
+  }
+}
 .tile-new {
   -webkit-animation: appear 400ms ease 100ms;
   -moz-animation: appear 400ms ease 100ms;
@@ -741,6 +812,11 @@ hr {
   -webkit-animation: pop 400ms ease 100ms;
   -moz-animation: pop 400ms ease 100ms;
   animation: pop 400ms ease 100ms;
+}
+.tile-bonused ..tile-useless {
+  -webkit-animation: bonused 400ms ease 100ms;
+  -moz-animation: bonused 400ms ease 100ms;
+  animation: bonused 400ms ease 100ms;
 }
 .tile-merged, .tile-new {
   height: 100%;
