@@ -315,7 +315,7 @@ GameManager.prototype.tileMatchesAvailable = function () {
 
             var other  = self.grid.cellContent(cell);
 
-            if (other && other.value === tile.value) {
+            if (other && other.value === tile.value && other.type === tile.type) {
               return true; // These two tiles can be merged
             }
           }
