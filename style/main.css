@@ -881,6 +881,7 @@ hr {
   h1.title {
     font-size: 27px;
     margin-top: 15px;
+	float: none;
   }
   .container {
     width: 270px;
