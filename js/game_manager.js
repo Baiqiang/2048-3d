@@ -83,7 +83,7 @@ GameManager.prototype.addRandomTile = function () {
 
 // Add bonus tile
 GameManager.prototype.addBonus = function () {
-  if (Math.random() > 0.2 * this.grid.availableCells().length / this.grid.cells.length) {
+  if (Math.random() > 0.2 * this.grid.availableCells().length / Math.pow(this.size, 3)) {
     return;
   }
   var maxBonus = 4;
