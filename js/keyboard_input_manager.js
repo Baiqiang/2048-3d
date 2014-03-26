@@ -36,10 +36,10 @@ KeyboardInputManager.prototype.listen = function () {
     68: 1, // D
     83: 2, // S
     65: 3, // A
-    81: 4, // Q
+    81: 5, // Q
     70: 4, // F
     82: 5, // R
-    69: 5  // E
+    69: 4  // E
   };
 
   var holdingMap = {
