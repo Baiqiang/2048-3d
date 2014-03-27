@@ -166,7 +166,7 @@ HTMLActuator.prototype.normalizePosition = function (position) {
 
 HTMLActuator.prototype.positionClass = function (position) {
   position = this.normalizePosition(position);
-  return "cube-" + position.x + "-" + position.y + "-" + position.z;
+  return "cube-" + position.x + "-" + position.y + "-" + position.z + ' x-' + position.x + ' y-' + position.y + ' z-' + position.z;
 };
 
 HTMLActuator.prototype.updateScore = function (score) {

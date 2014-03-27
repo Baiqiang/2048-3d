@@ -547,11 +547,28 @@ hr {
 .tile.tile-bonused {
   display: none;
 }
+.tile.z-1 {
+  z-index: 1;
+}
+.tile.z-2 {
+  z-index: 2;
+}
+.tile.z-3 {
+  z-index: 3;
+}
+.rotated .tile.x-1 {
+  z-index: 3;
+}
+.rotated .tile.x-2 {
+  z-index: 2;
+}
+.rotated .tile.x-3 {
+  z-index: 1;
+}
 .tile .cube-face {
   background: #eee4da;
   text-align: center;
   font-weight: bold;
-  z-index: 10;
   font-size: 55px;
 }
 .tile.tile-bonus .cube-face {
