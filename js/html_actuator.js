@@ -37,7 +37,7 @@ HTMLActuator.prototype.hidden = function (layer, size) {
             x: x,
             y: y,
             z: z
-          }))).forEach(function(d) {
+          }).replace(/ .+/g, ''))).forEach(function(d) {
             d.classList.add('hidden');
           });
         }
