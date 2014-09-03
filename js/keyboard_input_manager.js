@@ -36,8 +36,10 @@ KeyboardInputManager.prototype.listen = function () {
     68: 1, // D
     83: 2, // S
     65: 3, // A
-    81: 4, // Q
-    69: 5  // E
+    81: 5, // Q
+    70: 4, // F
+    82: 5, // R
+    69: 4  // E
   };
 
   var holdingMap = {
@@ -45,6 +47,12 @@ KeyboardInputManager.prototype.listen = function () {
     50: 2,
     51: 3
   };
+
+  var restartMap = [
+    8, //backspace
+    27, //esc
+    48 //0
+  ];
 
   var slice = [].slice;
 
@@ -66,7 +74,10 @@ KeyboardInputManager.prototype.listen = function () {
         self.emit("rotate");
       }
 
-      if (event.which === 32) self.restart.bind(self)(event);
+      if (restartMap.indexOf(event.which) > -1) {
+        event.preventDefault();
+        self.restart.bind(self)(event);
+      }
     }
   });
   document.addEventListener('keyup', function (event) {
@@ -115,47 +126,48 @@ KeyboardInputManager.prototype.listen = function () {
     }
   });
   //touch buttons
-  slice.call(document.querySelectorAll('.touch-hidden')).forEach(function(button) {
-    console.log(button)
+  slice.call(document.querySelectorAll('.touch-button.long-tap')).forEach(function(button) {
     var layer = button.textContent;
     button.addEventListener('touchstart', function (event) {
-      event.stopPropagation();
       event.preventDefault();
       self.emit("hidden", layer);
+    });
+    button.addEventListener('touchstart', function (event) {
+      event.preventDefault();
     });
     button.addEventListener('touchend', function (event) {
       self.emit("hidden", false);
     });
   });
-  var rotateButton = document.querySelector('.touch-rotate');
-  var touchStartClientX2, touchStartClientY2;
-  rotateButton.addEventListener("touchstart", function (event) {
-    if (event.touches.length > 1) return;
+  slice.call(document.querySelectorAll('.touch-button.tap')).forEach(function(button) {
+    var touchStartClientX, touchStartClientY;
+    button.addEventListener("touchstart", function (event) {
+      if (event.touches.length > 1) return;
 
-    touchStartClientX2 = event.touches[0].clientX;
-    touchStartClientY2 = event.touches[0].clientY;
-    event.preventDefault();
-    event.stopPropagation();
-  });
+      touchStartClientX = event.touches[0].clientX;
+      touchStartClientY = event.touches[0].clientY;
+      event.preventDefault();
+    });
 
-  rotateButton.addEventListener("touchmove", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-  });
+    button.addEventListener("touchmove", function (event) {
+      event.preventDefault();
+    });
 
-  rotateButton.addEventListener("touchend", function (event) {
-    if (event.touches.length > 0) return;
+    button.addEventListener("touchend", function (event) {
+      if (event.touches.length > 0) return;
 
-    var dx = event.changedTouches[0].clientX - touchStartClientX2;
-    var absDx = Math.abs(dx);
+      var dx = event.changedTouches[0].clientX - touchStartClientX;
+      var absDx = Math.abs(dx);
 
-    var dy = event.changedTouches[0].clientY - touchStartClientY2;
-    var absDy = Math.abs(dy);
+      var dy = event.changedTouches[0].clientY - touchStartClientY;
+      var absDy = Math.abs(dy);
 
-    if (Math.max(absDx, absDy) < 20) {
-      // (right : left) : (down : up)
-      self.emit("rotate");
-    }
+      if (Math.max(absDx, absDy) < 20) {
+        var type = button.dataset.type || 'rotate';
+        var value = button.dataset.value || 0;
+        self.emit(type, value);
+      }
+    });
   });
 };
 

@@ -6,6 +6,10 @@ function HTMLActuator() {
   this.messageContainer = document.querySelector(".game-message");
 
   this.score = 0;
+  var clearUselessTile = this.clearUselessTile.bind(this);
+  ['webkitTransitionEnd', 'oTransitionEnd', 'transitionend'].forEach(function(eventName) {
+    document.addEventListener(eventName, clearUselessTile);
+  })
 }
 
 HTMLActuator.prototype.rotate = function (rotated) {
@@ -16,20 +20,38 @@ HTMLActuator.prototype.rotate = function (rotated) {
   }
 };
 
-HTMLActuator.prototype.hidden = function (layer) {
-  var dom, slice = [].slice; 
+HTMLActuator.prototype.hidden = function (layer, size) {
   if (layer === false || layer === undefined) {
-    dom = document.querySelectorAll('.cube.hidden');
-    slice.call(dom).forEach(function(d) {
+    var dom = document.querySelectorAll('.cube.hidden');
+    [].slice.call(dom).forEach(function(d) {
       d.classList.remove('hidden');
     });
   } else {
-    dom = document.querySelectorAll('.cube:not([class$="-' + layer + '"])');
-    slice.call(dom).forEach(function(d) {
-      d.classList.add('hidden');
-    });
+    for (var x = 0; x < size; x++) {
+      for (var y = 0; y < size; y++) {
+        for (var z = 0; z < size; z++) {
+          if (z + 1 == layer) {
+            continue;
+          }
+          [].slice.call(document.querySelectorAll('.' + this.positionClass({
+            x: x,
+            y: y,
+            z: z
+          }).replace(/ .+/g, ''))).forEach(function(d) {
+            d.classList.add('hidden');
+          });
+        }
+      }
+    }
   }
 };
+
+HTMLActuator.prototype.clearUselessTile = function() {
+  var self = this;
+  [].slice.call(document.querySelectorAll('.tile-useless')).forEach(function(d) {
+    self.tileContainer.removeChild(d.parentNode);
+  });
+}
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
   var self = this;
@@ -61,7 +83,10 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
 };
 
 // Continues the game (both restart and keep playing)
-HTMLActuator.prototype.continue = function () {
+HTMLActuator.prototype.continue = function (restart) {
+  if (typeof ga !== "undefined") {
+    ga("send", "event", window.gameName || "game", restart ? "restart" : "keep playing");
+  }
   this.clearMessage();
 };
 
@@ -80,7 +105,18 @@ HTMLActuator.prototype.addTile = function (tile) {
   var positionClass = this.positionClass(position);
 
   // We can't use classlist because it somehow glitches when replacing classes
-  var classes = ["tile", "tile-" + tile.value, 'cube', positionClass];
+  var classes = ["tile", "tile-" + tile.value, 'cube', positionClass, "tile-" + tile.type];
+  var value = tile.value;
+  if (value > 8192) {
+    (function() {
+      var i = 1, n = value;
+      while (n > 2) {
+        i++;
+        n /= 2;
+      }
+      value = '2^' + i;
+    })();
+  }
 
   if (tile.value > 2048) classes.push("tile-super");
 
@@ -89,7 +125,7 @@ HTMLActuator.prototype.addTile = function (tile) {
   ['u', 'd', 'l', 'r', 'f', 'b'].forEach(function(f) {
     var face = document.createElement("div");
     self.applyClasses(face, ['cube-face', 'cube-face-' + f]);
-    face.textContent = tile.value;
+    face.textContent = value;
     inner.appendChild(face);
   });
 
@@ -99,6 +135,9 @@ HTMLActuator.prototype.addTile = function (tile) {
       classes[3] = self.positionClass({ x: tile.x, y: tile.y, z: tile.z });
       self.applyClasses(wrapper, classes); // Update the position
     });
+    if (tile.merged) {
+      inner.classList.add("tile-useless");
+    }
   } else if (tile.mergedFrom) {
     inner.classList.add("tile-merged");
 
@@ -127,7 +166,7 @@ HTMLActuator.prototype.normalizePosition = function (position) {
 
 HTMLActuator.prototype.positionClass = function (position) {
   position = this.normalizePosition(position);
-  return "cube-" + position.x + "-" + position.y + "-" + position.z;
+  return "cube-" + position.x + "-" + position.y + "-" + position.z + ' x-' + position.x + ' y-' + position.y + ' z-' + position.z;
 };
 
 HTMLActuator.prototype.updateScore = function (score) {
@@ -154,6 +193,9 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 HTMLActuator.prototype.message = function (won) {
   var type    = won ? "game-won" : "game-over";
   var message = won ? "You win!" : "Game over!";
+  if (typeof ga !== "undefined") {
+    ga("send", "event", window.gameName || "game", "end", type, this.score);
+  }
 
   this.messageContainer.classList.add(type);
   this.messageContainer.getElementsByTagName("p")[0].textContent = message;
