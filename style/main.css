@@ -857,7 +857,7 @@ hr {
   -moz-animation: bonused 400ms ease 100ms;
   animation: bonused 400ms ease 100ms;
 }
-.tile-merged, .tile-new, .tile-bonus .tile-useless {
+.tile > div, .tile-merged, .tile-new, .tile-bonus .tile-useless {
   height: 100%;
   width: 100%;
   -webkit-animation-fill-mode: backwards;
